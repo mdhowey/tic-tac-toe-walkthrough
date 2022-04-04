@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./styles/main.css">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
+  <script type="text/javascript" src="./scripts/app.js" defer></script>
+  <title>Tic Tac Toe</title>
+</head>
+
+<body>
+  <header>
+    <!-- Navbar by Álvaro -->
+    <!-- https://codepen.io/alvarotrigo/pen/XWejzjR?editors=1100 -->
+    <nav class="navbar">
+      <div class="navbar-container navbar-wrapper">
+        <!-- Create navbar functionality -->
+        <input type="checkbox" name="" id="">
+        <div class="hamburger-lines">
+          <span class="line line1"></span>
+          <span class="line line2"></span>
+          <span class="line line3"></span>
+        </div>
+        <ul class="menu-items">
+          <li>
+            <a href="https://github.com/mdhowey" rel="nofollow" target="_blank">
+              GitHub
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/dev-howey/" rel="nofollow" target="_blank">
+              LinkedIn
+            </a>
+          </li>
+        </ul>
+        <h1 class="logo">Tic Tac Toe</h1>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <button id="start_btn">start</button>
+    <section class="wrapper is-hidden">
+      <h3 id="instructions">Instructions</h3>
+      <p id="game_text">Ready?!</p>
+    </section>
+    <div class="row">
+      <section class="wrapper is-hidden">
+        <table id="board">
+          <tr>
+            <td class="tile" id="1"></td>
+            <td class="tile" id="2"></td>
+            <td class="tile" id="3"></td>
+          </tr>
+          <tr>
+            <td class="tile" id="4"></td>
+            <td class="tile" id="5"></td>
+            <td class="tile" id="6"></td>
+          </tr>
+          <tr>
+            <td class="tile" id="7"></td>
+            <td class="tile" id="8"></td>
+            <td class="tile" id="9"></td>
+          </tr>
+        </table>
+      </section>
+      <section class="wrapper is-hidden">
+        <table id="scoreboard">
+          <th>Score</th>
+          <tr id="scoreboard_data">
+            <td class="player">Player 1</td>
+            <td id="player_one_score" class="score">0</td>
+            <td class="player">Player 2</td>
+            <td id="player_two_score" class="score">0</td>
+          </tr>
+          </tr>
+        </table>
+      </section>
+    </div>
+    <section class="wrapper is-hidden">
+      <button id="reset_btn">reset</button>
+    </section>
+  </main>
+</body>
+
+</html>
