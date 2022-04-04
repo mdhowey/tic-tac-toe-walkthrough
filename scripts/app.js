@@ -4,6 +4,7 @@ const $section = $('section');
 const $reset = $('#reset_btn');
 const $tile = $('.tile');
 const $text = $('#game_text');
+const $board = $('#board');
 
 // Game tiles
 const $1 = $('#1');
@@ -25,6 +26,9 @@ let playerTwoScore = 0;
 // Turn flag
 let turn = 1;
 
+// Game Progress Flag
+let gameFlag = true;
+
 // ==== Button Event Listeners ==== //
 // Start Game
 $start.click(function () {
@@ -32,46 +36,55 @@ $start.click(function () {
   $section.removeClass('is-hidden');
   $p1Score.text(playerOneScore);
   $p2Score.text(playerTwoScore);
+  gameFlag = true;
+  $tile.is(':empty');
 });
 
 // Reset Game
 $reset.click(function () {
   $start.removeClass('is-hidden');
   $section.addClass('is-hidden');
+  gameFlag = true;
+  $tile.is(':empty');
 });
 
 $tile.click(function () {
-  if (turn === 1) {
-    if ($(this).is(':empty')) {
-      $text.text("Player 2 is up!");
-      $(this).text("x");
-      turn = 2;
-      isEmpty = false;
-      winCheck('x');
-    } else {
-      $(this).css("background-color", "lightcoral");
-      setTimeout(() => {
-        $(this).css("background-color", "white");
-      }, 250);
-    }
-  } else {
-    if ($(this).is(':empty')) {
-      $text.text("Player 1 is up!");
-      $(this).text("o");
-      turn = 1;
-      isEmpty = false;
-      winCheck('o');
-    } else {
-      $(this).css("background-color", "lightcoral");
-      setTimeout(() => {
-        $(this).css("background-color", "white");
-      }, 250);
+  if (gameFlag === true) {
+    if (turn === 1) {
+      if ($(this).is(':empty')) {
+        $text.text("Player 2 is up!");
+        $(this).text("x");
+        turn = 2;
+        if (winCheck('x')) {
+          gameFlag = false;
+          $p1Score.text(playerOneScore);
+        };
+      } else {
+        $(this).css("background-color", "lightcoral");
+        setTimeout(() => {
+          $(this).css("background-color", "white");
+        }, 250);
+      }
+    } else if (turn === 2) {
+      if ($(this).is(':empty')) {
+        $text.text("Player 1 is up!");
+        $(this).text("o");
+        turn = 1;
+        if (winCheck('o')) {
+          gameFlag = false;
+          $p2Score.text(playerTwoScore);
+        };
+      } else {
+        $(this).css("background-color", "lightcoral");
+        setTimeout(() => {
+          $(this).css("background-color", "white");
+        }, 250);
+      }
     }
   }
 });
 
 function winCheck(char) {
-  console.log($1.text(), $2.text(), $3.text())
   if ($1.text() === char && $2.text() === char && $3.text() === char) {
     if (char === 'x') {
       $text.text("Player 1 wins!");
@@ -81,7 +94,7 @@ function winCheck(char) {
       playerTwoScore++;
     }
     return true;
-  } else if ($3.text() === char && $4.text() === char && $5.text() === char) {
+  } else if ($4.text() === char && $5.text() === char && $6.text() === char) {
     if (char === 'x') {
       $text.text("Player 1 wins!");
       playerOneScore++;
@@ -90,7 +103,7 @@ function winCheck(char) {
       playerTwoScore++;
     }
     return true;
-  } else if ($6.text() === char && $7.text() === char && $8.text() === char) {
+  } else if ($7.text() === char && $8.text() === char && $9.text() === char) {
     if (char === 'x') {
       $text.text("Player 1 wins!");
       playerOneScore++;
@@ -155,4 +168,4 @@ function winCheck(char) {
 // [1,2w,3,4,5w,6,7,8w,9]
 // [1,2,3w,4,5,6w,7,8,9w]
 // [1w,2,3,4,5w,6,7,8,9w]
-// [1,2,3w,4,5w,6,7w,8,9]
+// [1,2,3w,4,5w,6,7w,8,9] 
